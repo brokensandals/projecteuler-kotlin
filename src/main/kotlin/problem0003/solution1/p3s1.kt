@@ -11,8 +11,6 @@ What is the largest prime factor of the number 600851475143 ?
 // This solution uses a simple (inefficient) way of lazily generating
 // a list of prime numbers, and a recursive prime factorization algorithm.
 
-const val TARGET = 600851475143L
-
 /**
  * Determines if the given number is prime by checking that it is not
  * evenly divisible by any number greater than 2 or less than itself.
@@ -50,6 +48,4 @@ fun primeFactors(x: Long): List<Long> {
     return listOf(firstPrimeFactor).plus(primeFactors(x / firstPrimeFactor))
 }
 
-fun main() {
-    println(primeFactors(TARGET).max())
-}
+fun largestPrimeFactor(n: Long) = primeFactors(n).max()
