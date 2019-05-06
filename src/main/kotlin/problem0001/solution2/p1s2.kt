@@ -22,12 +22,5 @@ fun sumMultiples(of: Int, below: Int): Int {
     return sum
 }
 
-fun main() {
-    val end = 1000
-    println(
-        sumMultiples(3, end) + sumMultiples(
-            5,
-            end
-        ) - sumMultiples(15, end)
-    )
-}
+fun sumMultiplesOf3And5(end: Int): Int =
+    sumMultiples(3, end) + sumMultiples(5, end) - sumMultiples(15, end)

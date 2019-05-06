@@ -18,11 +18,10 @@ Find the sum of all the multiples of 3 or 5 below 1000.
 // added to the sum (since it will already have been added when the threes
 // variable was updated).
 
-fun main() {
+fun sumMultiplesOf3And5(end: Int): Int {
     var threes = 3
     var fives = 5
     var sum = threes + fives
-    val end = 1000
 
     while (threes < end || fives < end) {
         if (threes < fives) {
@@ -38,5 +37,5 @@ fun main() {
         }
     }
 
-    println(sum)
+    return sum
 }
