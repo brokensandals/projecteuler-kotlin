@@ -15,12 +15,12 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
 // but only adds each third number to the sum, rather than using modulo to
 // check for evenness.
 
-fun main() {
+fun sumOfEvenFib(upTo: Int): Int {
     var prev = 1
     var cur = 2
     var evenSum = 0
     var skip = 0
-    while (cur <= 4000000) {
+    while (cur <= upTo) {
         if (skip == 0) {
             evenSum += cur
             skip = 2
@@ -31,5 +31,5 @@ fun main() {
         prev = cur
         cur = next
     }
-    println(evenSum)
+    return evenSum
 }

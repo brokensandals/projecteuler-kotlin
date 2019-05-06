@@ -24,12 +24,12 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
 const val Φ = 1.6180339887 // No, I wouldn't use non-ASCII identifiers in real-word code, don't @ me
 const val Φ_CUBED = Φ * Φ * Φ
 
-fun main() {
+fun sumOfEvenFib(upTo: Int): Int {
     var cur = 2
     var sum = 0
-    while (cur <= 4000000) {
+    while (cur <= upTo) {
         sum += cur
         cur = round(cur * Φ_CUBED).toInt()
     }
-    println(sum)
+    return sum
 }

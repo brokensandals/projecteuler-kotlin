@@ -13,11 +13,11 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
 // This calculates each number in the Fibonacci sequence, checks whether it is
 // even, and if so, adds it to the sum.
 
-fun main() {
+fun sumOfEvenFib(upTo: Int): Int {
     var prev = 1
     var cur = 2
     var evenSum = 0
-    while (cur <= 4000000) {
+    while (cur <= upTo) {
         if (cur % 2 == 0) {
             evenSum += cur
         }
@@ -25,5 +25,5 @@ fun main() {
         prev = cur
         cur = next
     }
-    println(evenSum)
+    return evenSum
 }

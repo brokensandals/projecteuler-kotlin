@@ -14,15 +14,15 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
 // calculate the sequence of even Fibonacci numbers without calculating the
 // intervening odd numbers. E(n) = E(n-2) + 4*E(n-1)
 
-fun main() {
+fun sumOfEvenFib(upTo: Int): Int {
     var prev = 2
     var cur = 8
     var sum = 2
-    while (cur <= 4000000) {
+    while (cur <= upTo) {
         sum += cur
         val next = prev + 4 * cur
         prev = cur
         cur = next
     }
-    println(sum)
+    return sum
 }
