@@ -1,15 +1,8 @@
 package problem0003.solution2
 
+import problem0003.P3Solution
 import shared.primes.IntEratosthenesSieve
 import java.util.*
-
-/*
-Problem statement from https://projecteuler.net/problem=3
-
-The prime factors of 13195 are 5, 7, 13 and 29.
-
-What is the largest prime factor of the number 600851475143 ?
- */
 
 // This is a recursive solution. For a given number, we find its first prime
 // factor, divide by that and recurse to find the quotient's largest prime
@@ -37,29 +30,31 @@ What is the largest prime factor of the number 600851475143 ?
 // So, if none of the prime numbers up to the square root of a given number
 // are factors of it, the number is prime.
 
-fun largestPrimeFactor(number: Long): Long {
-    val sieve = IntEratosthenesSieve(
-        Math.ceil(Math.sqrt(number.toDouble())).toInt()
-    )
+class P3S2 : P3Solution {
+    override fun largestPrimeFactor(number: Long): Long {
+        val sieve = IntEratosthenesSieve(
+            Math.ceil(Math.sqrt(number.toDouble())).toInt()
+        )
 
-    fun firstPrimeFactor(number: Long): Long {
-        if (sieve.isPrime(number) == true) {
-            return number
+        fun firstPrimeFactor(number: Long): Long {
+            if (sieve.isPrime(number) == true) {
+                return number
+            }
+
+            return sieve.knownPrimes.takeWhile { it * it <= number }
+                .filter { number % it == 0L }
+                .firstOrNull()?.toLong() ?: number
         }
 
-        return sieve.knownPrimes.takeWhile { it * it <= number }
-            .filter { number % it == 0L }
-            .firstOrNull()?.toLong() ?: number
-    }
-
-    fun recurse(number: Long): Long {
-        val first = firstPrimeFactor(number)
-        return if (first == number) {
-            first
-        } else {
-            maxOf(first, recurse(number / first))
+        fun recurse(number: Long): Long {
+            val first = firstPrimeFactor(number)
+            return if (first == number) {
+                first
+            } else {
+                maxOf(first, recurse(number / first))
+            }
         }
-    }
 
-    return recurse(number)
+        return recurse(number)
+    }
 }

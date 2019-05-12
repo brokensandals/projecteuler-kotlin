@@ -1,12 +1,6 @@
 package problem0003.solution1
 
-/*
-Problem statement from https://projecteuler.net/problem=3
-
-The prime factors of 13195 are 5, 7, 13 and 29.
-
-What is the largest prime factor of the number 600851475143 ?
- */
+import problem0003.P3Solution
 
 // This solution uses a simple (inefficient) way of lazily generating
 // a list of prime numbers, and a recursive prime factorization algorithm.
@@ -48,4 +42,7 @@ fun primeFactors(x: Long): List<Long> {
     return listOf(firstPrimeFactor).plus(primeFactors(x / firstPrimeFactor))
 }
 
-fun largestPrimeFactor(n: Long) = primeFactors(n).max()
+class P3S1 : P3Solution {
+    override fun largestPrimeFactor(number: Long) = primeFactors(number).max() ?:
+            throw IllegalArgumentException("No prime factors")
+}

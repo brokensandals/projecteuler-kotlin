@@ -1,12 +1,6 @@
 package problem0004.solution2
 
-/*
-Problem statement from https://projecteuler.net/problem=4
-
-A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
-
-Find the largest palindrome made from the product of two 3-digit numbers.
- */
+import problem0004.P4Solution
 
 // This solution generates a series of products of numbers of the given length,
 // and tests whether each is a palindrome. It includes some optimizations to
@@ -37,29 +31,31 @@ fun isPalindrome(num: Long): Boolean {
     return reversed == num
 }
 
-fun largestPalindromeProduct(digits: Int): Long {
-    val min = Math.pow(10.0, (digits - 1).toDouble()).toLong()
-    var best: Long = -1
+class P4S2 : P4Solution {
+    override fun largestPalindromeProduct(digits: Int): Long {
+        val min = Math.pow(10.0, (digits - 1).toDouble()).toLong()
+        var best: Long = -1
 
-    outer@ for (factor1 in (min * 10 - 1) downTo min) {
-        for (factor2 in factor1 downTo min) {
-            val product = factor1 * factor2
-            if (product < best) {
-                continue@outer
-            }
-
-            if (isPalindrome(product)) {
-                if (product > best) {
-                    best = product
+        outer@ for (factor1 in (min * 10 - 1) downTo min) {
+            for (factor2 in factor1 downTo min) {
+                val product = factor1 * factor2
+                if (product < best) {
+                    continue@outer
                 }
-                continue@outer
+
+                if (isPalindrome(product)) {
+                    if (product > best) {
+                        best = product
+                    }
+                    continue@outer
+                }
             }
         }
-    }
 
-    if (best < 0) {
-        throw IllegalArgumentException("No palindrome found")
-    }
+        if (best < 0) {
+            throw IllegalArgumentException("No palindrome found")
+        }
 
-    return best
+        return best
+    }
 }
