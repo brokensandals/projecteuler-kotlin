@@ -32,12 +32,12 @@ import java.util.*
 
 class P3S2 : P3Solution {
     override fun largestPrimeFactor(number: Long): Long {
-        val sieve = IntEratosthenesSieve(
+        val sieve = IntEratosthenesSieve().precalculate(
             Math.ceil(Math.sqrt(number.toDouble())).toInt()
         )
 
         fun firstPrimeFactor(number: Long): Long {
-            if (sieve.isPrime(number) == true) {
+            if (sieve.isKnown(number) && sieve.isPrime(number)) {
                 return number
             }
 
