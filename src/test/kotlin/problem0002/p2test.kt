@@ -5,7 +5,8 @@ import io.kotlintest.specs.FreeSpec
 
 val cases = mapOf(
     89 to 44,
-    4000000 to 4613732
+    4000000 to 4613732,
+    1000000000 to 0
 )
 
 class P2Test : FreeSpec({
